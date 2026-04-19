@@ -1,97 +1,55 @@
-# 🤖 Agente Financeiro Inteligente com IA Generativa
+# 🤖 LUMA — Agente Financeira Inteligente
 
-## Contexto
+## Sobre o Projeto
 
-Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para **agentes inteligentes e proativos**. Neste desafio, você vai idealizar e prototipar um agente financeiro que utiliza IA Generativa para:
+A **Bia** é uma agente de inteligência artificial desenvolvida para ajudar mulheres a entender, organizar e melhorar sua vida financeira de forma simples e acessível.
 
-- **Antecipar necessidades** ao invés de apenas responder perguntas
-- **Personalizar** sugestões com base no contexto de cada cliente
-- **Cocriar soluções** financeiras de forma consultiva
-- **Garantir segurança** e confiabilidade nas respostas (anti-alucinação)
+O projeto foi criado como parte de um desafio prático de desenvolvimento de agentes com IA generativa, com foco em:
 
-> [!TIP]
-> Na pasta [`examples/`](./examples/) você encontra referências de implementação para cada etapa deste desafio.
+- personalização
+- segurança (anti-alucinação)
+- impacto social
 
----
-
-## O Que Você Deve Entregar
-
-### 1. Documentação do Agente
-
-Defina **o que** seu agente faz e **como** ele funciona:
-
-- **Caso de Uso:** Qual problema financeiro ele resolve? (ex: consultoria de investimentos, planejamento de metas, alertas de gastos)
-- **Persona e Tom de Voz:** Como o agente se comporta e se comunica?
-- **Arquitetura:** Fluxo de dados e integração com a base de conhecimento
-- **Segurança:** Como evitar alucinações e garantir respostas confiáveis?
-
-📄 **Template:** [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
+Diferente de chatbots tradicionais, a Bia analisa dados da usuária para oferecer orientações contextualizadas, respeitando sua realidade financeira.
 
 ---
 
-### 2. Base de Conhecimento
+## Problema
 
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
+Muitas pessoas enfrentam dificuldades para lidar com dinheiro devido a:
 
-| Arquivo | Formato | Descrição |
-|---------|---------|-----------|
-| `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
-
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
-
-📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
+- falta de educação financeira
+- linguagem técnica e pouco acessível
+- ausência de soluções personalizadas
+- renda variável ou endividamento
 
 ---
 
-### 3. Prompts do Agente
+## Solução
 
-Documente os prompts que definem o comportamento do seu agente:
+A Bia atua como uma assistente financeira que:
 
-- **System Prompt:** Instruções gerais de comportamento e restrições
-- **Exemplos de Interação:** Cenários de uso com entrada e saída esperada
-- **Tratamento de Edge Cases:** Como o agente lida com situações limite
+- analisa perfil, transações e histórico da usuária  
+- identifica padrões de comportamento financeiro  
+- sugere próximos passos de forma simples  
+- apresenta opções financeiras seguras  
 
-📄 **Template:** [`docs/03-prompts.md`](./docs/03-prompts.md)
-
----
-
-### 4. Aplicação Funcional
-
-Desenvolva um **protótipo funcional** do seu agente:
-
-- Chatbot interativo (sugestão: Streamlit, Gradio ou similar)
-- Integração com LLM (via API ou modelo local)
-- Conexão com a base de conhecimento
-
-📁 **Pasta:** [`src/`](./src/)
+Sempre priorizando:
+1. Organização financeira  
+2. Controle de gastos  
+3. Construção de reserva  
+4. Investimentos (quando aplicável)  
 
 ---
 
-### 5. Avaliação e Métricas
+## Funcionalidades
 
-Descreva como você avalia a qualidade do seu agente:
-
-**Métricas Sugeridas:**
-- Precisão/assertividade das respostas
-- Taxa de respostas seguras (sem alucinações)
-- Coerência com o perfil do cliente
-
-📄 **Template:** [`docs/04-metricas.md`](./docs/04-metricas.md)
-
----
-
-### 6. Pitch
-
-Grave um **pitch de 3 minutos** (estilo elevador) apresentando:
-
-- Qual problema seu agente resolve?
-- Como ele funciona na prática?
-- Por que essa solução é inovadora?
-
-📄 **Template:** [`docs/05-pitch.md`](./docs/05-pitch.md)
+- Análise de transações financeiras  
+- Personalização com base no perfil da usuária  
+- Chat interativo  
+- Continuidade com histórico de atendimento  
+- Controle de respostas (anti-alucinação)  
+- Recomendação de produtos financeiros (limitada à base)  
 
 ---
 
@@ -140,10 +98,94 @@ Todas as ferramentas abaixo possuem versões gratuitas:
 
 ---
 
-## Dicas Finais
+## Tecnologias Utilizadas
 
-1. **Comece pelo prompt:** Um bom system prompt é a base de um agente eficaz
-2. **Use os dados mockados:** Eles garantem consistência e evitam problemas com dados sensíveis
-3. **Foque na segurança:** No setor financeiro, evitar alucinações é crítico
-4. **Teste cenários reais:** Simule perguntas que um cliente faria de verdade
-5. **Seja direto no pitch:** 3 minutos passam rápido, vá ao ponto
+- Python  
+- Streamlit (interface)  
+- JSON e CSV (base de dados)  
+- LLM (ex: OpenAI API)  
+
+---
+
+## Segurança e Confiabilidade
+
+A Luma foi projetada para evitar erros comuns em IA:
+
+- utiliza apenas dados da base local  
+- não inventa informações  
+- recomenda apenas produtos disponíveis  
+- evita sugestões inadequadas (ex: investimento para quem tem dívida)  
+
+⚠️ **Importante:**  
+Este agente possui caráter educativo e não substitui um consultor financeiro profissional.
+
+---
+
+## Base de Dados
+
+O projeto utiliza dados mockados e estruturados:
+
+- **15 perfis de usuárias** com diferentes realidades financeiras  
+- **Histórico de transações** para análise de comportamento  
+- **Histórico de atendimentos** para continuidade  
+- **Produtos financeiros controlados** para evitar alucinações  
+
+---
+
+## Como Executar o Projeto
+
+1. Clone o repositório:
+```
+git clone https://github.com/seu-usuario/lab-agente-financeiro.git
+```
+
+2. Acesse a pasta:
+```
+cd lab-agente-financeiro
+```
+
+4. Instale as dependências:
+```
+pip install -r requirements.txt
+```
+6. Execute a aplicação:
+```
+streamlit run src/app.py
+```
+---
+
+## Testes e Avaliação
+
+O agente foi avaliado com base em:
+
+- assertividade das respostas  
+- coerência com o perfil da usuária  
+- segurança (anti-alucinação)  
+- capacidade de personalização  
+
+---
+
+## Impacto
+
+A Luma busca democratizar o acesso à orientação financeira, ajudando pessoas a:
+
+- entender melhor seu dinheiro  
+- tomar decisões mais conscientes  
+- reduzir riscos financeiros  
+
+---
+
+## Melhorias Futuras
+
+- análises financeiras mais avançadas  
+- integração com APIs reais  
+- aprendizado contínuo com interações  
+- interface mais robusta  
+
+---
+
+## Autoria
+
+Projeto desenvolvido por Maria Julia Elias como parte de um desafio de IA aplicada ao setor financeiro do Bootcamp Bradesco GenAI & Dados.
+
+
