@@ -1,0 +1,14 @@
+# Ambiente Virtual
+.venv/
+venv/
+__pycache__/
+
+# Configurações do PyCharm
+.idea/
+
+# Segurança (IMPORTANTE)
+src/config.py
+.env
+
+# Dados Sensíveis (Opcional, se quiser manter os exemplos locais)
+# data/

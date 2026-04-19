@@ -1,0 +1,90 @@
+id_usuario,data,descricao,valor,tipo
+1,2026-03-01,Compra mercado,-300,despesa
+1,2026-03-05,Venda roupas,500,receita
+1,2026-03-10,Conta luz,-120,despesa
+1,2026-03-15,Material costura,-200,despesa
+1,2026-03-20,Venda roupas,600,receita
+
+2,2026-03-02,Compra mercado,-400,despesa
+2,2026-03-06,Venda online,900,receita
+2,2026-03-10,Internet,-100,despesa
+2,2026-03-18,Compra estoque,-300,despesa
+2,2026-03-25,Venda online,1200,receita
+
+3,2026-03-01,Serviços salão,2000,receita
+3,2026-03-05,Produtos salão,-500,despesa
+3,2026-03-10,Aluguel,-1500,despesa
+3,2026-03-15,Serviços salão,2500,receita
+3,2026-03-20,Conta luz,-300,despesa
+
+4,2026-03-03,Salário,2500,receita
+4,2026-03-07,Supermercado,-600,despesa
+4,2026-03-12,Cartão crédito,-800,despesa
+4,2026-03-18,Transporte,-200,despesa
+4,2026-03-25,Farmácia,-150,despesa
+
+5,2026-03-01,Atendimentos manicure,800,receita
+5,2026-03-05,Material trabalho,-200,despesa
+5,2026-03-10,Mercado,-300,despesa
+5,2026-03-15,Atendimentos manicure,900,receita
+5,2026-03-22,Lazer,-150,despesa
+
+6,2026-03-01,Salário,5000,receita
+6,2026-03-05,Supermercado,-700,despesa
+6,2026-03-10,Escola filhos,-1200,despesa
+6,2026-03-15,Conta luz,-300,despesa
+6,2026-03-20,Plano saúde,-500,despesa
+
+7,2026-03-02,Vendas loja,3000,receita
+7,2026-03-06,Compra estoque,-1500,despesa
+7,2026-03-10,Funcionários,-2000,despesa
+7,2026-03-18,Vendas loja,3500,receita
+7,2026-03-25,Aluguel,-2000,despesa
+
+8,2026-03-01,Bico,-400,receita
+8,2026-03-05,Alimentação,-200,despesa
+8,2026-03-10,Transporte,-100,despesa
+8,2026-03-15,Bico,-300,receita
+8,2026-03-22,Lazer,-150,despesa
+
+9,2026-03-02,Trabalho cozinha,1200,receita
+9,2026-03-06,Supermercado,-800,despesa
+9,2026-03-10,Conta luz,-250,despesa
+9,2026-03-15,Trabalho cozinha,1300,receita
+9,2026-03-20,Cartão crédito,-700,despesa
+
+10,2026-03-01,Freelance,2000,receita
+10,2026-03-05,Software,-200,despesa
+10,2026-03-10,Internet,-120,despesa
+10,2026-03-15,Freelance,2500,receita
+10,2026-03-22,Lazer,-300,despesa
+
+11,2026-03-01,Auxílio familiar,2000,receita
+11,2026-03-05,Supermercado,-600,despesa
+11,2026-03-10,Conta luz,-200,despesa
+11,2026-03-15,Remédios,-150,despesa
+11,2026-03-22,Feira,-200,despesa
+
+12,2026-03-01,Publicidade,4000,receita
+12,2026-03-05,Compras online,-1500,despesa
+12,2026-03-10,Viagem,-2000,despesa
+12,2026-03-15,Publicidade,5000,receita
+12,2026-03-22,Lazer,-800,despesa
+
+13,2026-03-01,Salário,4200,receita
+13,2026-03-05,Supermercado,-500,despesa
+13,2026-03-10,Cartão crédito,-800,despesa
+13,2026-03-15,Transporte,-200,despesa
+13,2026-03-22,Conta luz,-250,despesa
+
+14,2026-03-01,Vendas,1200,receita
+14,2026-03-05,Supermercado,-500,despesa
+14,2026-03-10,Transporte,-200,despesa
+14,2026-03-15,Vendas,1500,receita
+14,2026-03-22,Conta luz,-200,despesa
+
+15,2026-03-01,Vendas empresa,5000,receita
+15,2026-03-05,Funcionários,-2000,despesa
+15,2026-03-10,Marketing,-1000,despesa
+15,2026-03-15,Vendas empresa,6000,receita
+15,2026-03-22,Aluguel,-2000,despesa
