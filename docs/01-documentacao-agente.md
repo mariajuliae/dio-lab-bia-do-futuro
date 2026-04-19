@@ -22,6 +22,8 @@ De forma proativa, ele:
   
 Tudo isso com linguagem simples e adaptada ao nível de conhecimento da usuária.
 
+O agente foi projetado para atuar no limite entre educação financeira e recomendação, garantindo segurança regulatória.
+
 ### Público-Alvo
 > Quem vai usar esse agente?
 
