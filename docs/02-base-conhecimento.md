@@ -6,9 +6,30 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 
 | Arquivo | Formato | Utilização no Agente |
 |---------|---------|---------------------|
-| `perfil_investidor.json` | JSON | Define se o quiz deve ser mais detalhado ou direto |
-| `produtos_financeiros.json` | JSON | Sugerir produtos adequados ao perfil |
-| `transacoes.csv` | CSV | Analisar padrão de gastos do cliente |
+| `perfil_investidor.json` | JSON | Armazena dados das usuárias (renda, dívidas, objetivos, comportamento) para personalizar respostas|
+| `produtos_financeiros.json` | JSON | Define os produtos que podem ser recomendados, evitando alucinações |
+| `transacoes.csv` | CSV | Permite analisar padrão de gastos, identificar desequilíbrios e gerar alertas |
+| `historico_atendimento.csv` | CSV | Mantém contexto das interações anteriores, evitando repetição e permitindo continuidade |
+
+---
+
+## Adaptações nos Dados
+
+> Você modificou ou expandiu os dados mockados? Descreva aqui.
+
+Os dados mockados fornecidos pelo desafio foram adaptados e expandidos para refletir cenários mais realistas e variados.
+
+As principais modificações foram:
+- Criação de uma base própria de 15 usuárias, com perfis diversos (empreendedoras e não empreendedoras), incluindo:
+  - renda mensal
+  - tipo de renda (fixa, variável ou informal)
+  - presença de dívidas
+  - objetivos financeiros
+  - nível de conhecimento financeiro
+  - perfil comportamental
+- Expansão do arquivo transacoes.csv, com múltiplas transações por usuária, permitindo análise de padrões de receita e despesa.
+- Criação de um historico_atendimento.csv, simulando interações anteriores para dar contexto e continuidade ao agente.
+- Estruturação do arquivo produtos_financeiros.json, contendo apenas produtos controlados, garantindo que o agente não faça recomendações fora da base (estratégia anti-alucinação).
 
 ---
 
@@ -17,18 +38,28 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 ### Como os dados são carregados?
 > Descreva como seu agente acessa a base de conhecimento.
 
-Os ficheiros CSV e JSON são carregados no início da aplicação utilizando as bibliotecas pandas e json. Os dados das APIs de cotação são consultados via pedidos HTTP (biblioteca requests) sempre que o utilizador inicia uma nova simulação, garantindo dados de mercado atualizados.
+Os dados são carregados no início da aplicação utilizando:
+- json para arquivos .json
+- pandas para arquivos .csv
+Esses dados ficam armazenados em memória e são acessados conforme o usuário interage com o agente.
+Não há uso de APIs externas — todas as respostas são baseadas exclusivamente nos dados locais, garantindo controle e segurança.
 
 ### Como os dados são usados no prompt?
 > Os dados vão no system prompt? São consultados dinamicamente?
 
-Os dados são injetados de forma estruturada no contexto enviado à LLM:
+Os dados não são enviados de forma bruta para a LLM.
 
-- Dados de Perfil e Transações: São incluídos como "Fatos sobre o Utilizador" para que a IA saiba com quem está a falar.
+Antes disso, o sistema:
 
-- Dados de Mercado: As cotações reais são passadas como variáveis de contexto para alimentar os cálculos de projeção.
+- Identifica a usuária pelo id
+- Filtra:
+  - seu perfil (perfil_investidor.json)
+  - suas transações (transacoes.csv)
+  - seu histórico (historico_atendimento.csv)
+- Analisa regras simples (if/else) para entender o contexto
+- Filtra os produtos compatíveis (produtos_financeiros.json)
 
-- Filtro de Produtos: Antes de enviar as opções ao prompt, o código Python filtra o produtos_financeiros.json, enviando para a IA apenas o que é adequado ao perfil do cliente.
+Só então um contexto estruturado é enviado para a LLM.
 
 ---
 
@@ -37,22 +68,31 @@ Os dados são injetados de forma estruturada no contexto enviado à LLM:
 > Mostre um exemplo de como os dados são formatados para o agente.
 
 ```
-### PERFIL DO CLIENTE ###
-- Nome: Gabriel Figueiredo
-- Perfil Detectado: Moderado
-- Capacidade de Aporte Mensal Calculada: R$ 850,00
+### PERFIL DA USUÁRIA ###
+- Nome: Maria Souza
+- Renda Mensal: R$ 1800
+- Tipo de Renda: Informal
+- Possui Dívida: Sim (R$ 2000)
+- Objetivo: Expandir negócio
+- Nível Financeiro: Baixo
 
-### DADOS DE MERCADO ATUAIS ###
-- Taxa Selic: 10.75% a.a.
-- IPCA (últimos 12 meses): 4.50%
-
-### OPÇÕES DE INVESTIMENTO COMPATÍVEIS ###
-1. CDB Fácil Bradesco (Pós-fixado)
-2. Letra de Crédito Imobiliário (LCI) - Isenta de IR
-3. Fundo de Investimento em Renda Fixa
+### RESUMO FINANCEIRO ###
+- Total de Receitas no mês: R$ 1100
+- Total de Despesas no mês: R$ 620
+- Situação: Renda instável e presença de dívidas
 
 ### HISTÓRICO RECENTE ###
-- O cliente possui 3 transações de alto valor em lazer este mês. 
-Sugestão: Abordar a importância da reserva de emergência antes de investir em ativos de longo prazo.
+- Usuária já demonstrou dificuldade em organizar finanças
+- Já perguntou sobre empréstimos anteriormente
+
+### PRODUTOS COMPATÍVEIS ###
+1. Renegociação de Dívidas
+2. Microcrédito Empreendedora
+3. Planejamento Financeiro
+
+### INSTRUÇÃO PARA O AGENTE ###
+- Priorizar orientação sobre organização financeira
+- Evitar recomendar novos créditos de alto risco
+- Usar linguagem simples e acolhedora
 ...
 ```
