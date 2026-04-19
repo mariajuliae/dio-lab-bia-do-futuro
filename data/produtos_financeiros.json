@@ -1,42 +1,74 @@
 [
   {
-    "nome": "Tesouro Selic",
-    "categoria": "renda_fixa",
-    "risco": "baixo",
-    "rentabilidade": "100% da Selic",
-    "aporte_minimo": 30.00,
-    "indicado_para": "Reserva de emergência e iniciantes"
+    "id": 1,
+    "nome": "Microcrédito Empreendedora",
+    "tipo": "credito",
+    "publico": "baixa renda",
+    "indicacao": "mulheres com renda baixa que querem iniciar ou expandir negocio",
+    "descricao": "Crédito de pequeno valor com aprovação facilitada",
+    "taxa_juros": "2% ao mês"
   },
   {
-    "nome": "CDB Liquidez Diária",
-    "categoria": "renda_fixa",
-    "risco": "baixo",
-    "rentabilidade": "102% do CDI",
-    "aporte_minimo": 100.00,
-    "indicado_para": "Quem busca segurança com rendimento diário"
+    "id": 2,
+    "nome": "Crédito para Negócios",
+    "tipo": "credito",
+    "publico": "empreendedoras",
+    "indicacao": "quem já possui um negócio e precisa de capital",
+    "descricao": "Linha de crédito para expansão de negócios",
+    "taxa_juros": "1.5% ao mês"
   },
   {
-    "nome": "LCI/LCA",
-    "categoria": "renda_fixa",
-    "risco": "baixo",
-    "rentabilidade": "95% do CDI",
-    "aporte_minimo": 1000.00,
-    "indicado_para": "Quem pode esperar 90 dias (isento de IR)"
+    "id": 3,
+    "nome": "Renegociação de Dívidas",
+    "tipo": "servico",
+    "publico": "endividadas",
+    "indicacao": "pessoas com dificuldade para pagar dívidas",
+    "descricao": "Facilita pagamento com melhores condições",
+    "taxa_juros": "variável"
   },
   {
-    "nome": "Fundo Multimercado",
-    "categoria": "fundo",
-    "risco": "medio",
-    "rentabilidade": "CDI + 2%",
-    "aporte_minimo": 500.00,
-    "indicado_para": "Perfil moderado que busca diversificação"
+    "id": 4,
+    "nome": "Conta Poupança",
+    "tipo": "investimento",
+    "publico": "iniciante",
+    "indicacao": "quem quer começar a guardar dinheiro com baixo risco",
+    "descricao": "Aplicação simples e segura",
+    "taxa_juros": "0.5% ao mês"
   },
   {
-    "nome": "Fundo de Ações",
-    "categoria": "fundo",
-    "risco": "alto",
-    "rentabilidade": "Variável",
-    "aporte_minimo": 100.00,
-    "indicado_para": "Perfil arrojado com foco no longo prazo"
+    "id": 5,
+    "nome": "CDB Básico",
+    "tipo": "investimento",
+    "publico": "iniciante",
+    "indicacao": "quem quer rendimento maior que poupança",
+    "descricao": "Investimento de renda fixa com baixo risco",
+    "taxa_juros": "1% ao mês"
+  },
+  {
+    "id": 6,
+    "nome": "Fundo de Investimento",
+    "tipo": "investimento",
+    "publico": "intermediario",
+    "indicacao": "quem já tem alguma reserva e quer diversificar",
+    "descricao": "Investimento com gestão profissional",
+    "taxa_juros": "variável"
+  },
+  {
+    "id": 7,
+    "nome": "Planejamento Financeiro",
+    "tipo": "servico",
+    "publico": "geral",
+    "indicacao": "quem quer organizar melhor suas finanças",
+    "descricao": "Orientação para controle de gastos e metas",
+    "taxa_juros": "gratuito"
+  },
+  {
+    "id": 8,
+    "nome": "Seguro Emergencial",
+    "tipo": "seguro",
+    "publico": "baixa renda",
+    "indicacao": "quem não possui reserva de emergência",
+    "descricao": "Proteção básica em casos inesperados",
+    "taxa_juros": "mensalidade fixa"
   }
 ]
