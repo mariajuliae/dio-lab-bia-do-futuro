@@ -5,45 +5,39 @@
 ### Problema
 > Qual problema financeiro seu agente resolve?
 
-Inúmeras mulheres empreendedoras brasileiras, especialmente em contextos periféricos, enfrentam uma jornada dupla árdua e sentem que o sistema financeiro é nebuloso e não foi concebido para suas necessidades específicas. A linguagem técnica e a falta de oportunidades concretas geram uma lacuna de informação que dificulta a prosperidade de seus negócios.
+Investidores iniciantes sentem-se inseguros ao escolher onde colocar seu dinheiro e muitas vezes não compreendem seu próprio apetite a risco, o que leva a escolhas financeiras ruins.
 
 ### Solução
 > Como o agente resolve esse problema de forma proativa?
 
-A Luma resolve esse problema atuando como uma mentora financeira proativa. Ela não apenas responde perguntas, mas utiliza os dados de transações e o perfil da cliente para:
-
-- Antecipar crises: Identifica quando a cliente está entrando no rotativo e sugere alternativas de crédito mais baratas antes da cobrança de juros.
-
-- Personalizar o crescimento: Recomenda cursos e produtos específicos baseados no faturamento real da empreendedora.
-
-- Humanizar o atendimento: Atua como o primeiro ponto de contato acolhedor, com fluxo de transbordo para especialistas humanos quando a complexidade aumenta
+O agente realiza um "quiz" interativo baseado no perfil do cliente, analisa o histórico de transações reais para verificar a capacidade de aporte e sugere uma carteira educativa fictícia, comparando produtos do Bradesco disponíveis no dataset.
 
 ### Público-Alvo
 > Quem vai usar esse agente?
 
-Mulheres empreendedoras brasileiras (MEIs e autônomas) que buscam expandir seus negócios, mas que atualmente sentem exclusão ou dificuldade em acessar o suporte financeiro tradicional.
+Correntistas que possuem saldo parado na conta corrente e nunca investiram.
 
 ---
 
 ## Persona e Tom de Voz
 
 ### Nome do Agente
-Luma (Luz + Uma — Representando clareza e união entre as empreendedoras)
+InvestBot (Focado em transparência e clareza).
 
 ### Personalidade
 > Como o agente se comporta? (ex: consultivo, direto, educativo)
 
-Consultiva, empática e encorajadora. A Luma se comporta como uma parceira de negócios que entende as dores da jornada feminina (como a interseccionalidade e a maternidade).
+Consultivo, analítico e extremamente cauteloso.
 
 ### Tom de Comunicação
 > Formal, informal, técnico, acessível?
 
-Acessível e didática, traduzindo o "juridiquês" e os termos bancários para a realidade cotidiana da empreendedora, sem perder o profissionalismo
+Formal-acessível. Ele é direto ao ponto, mas explica cada termo técnico (como CDB ou Selic).
 
 ### Exemplos de Linguagem
-- Saudação: "Oi! Sou a Luma, sua mentora financeira aqui no Bradesco. Vi que sua confecção está crescendo, vamos planejar o próximo passo juntas?
-- Confirmação: "Entendi perfeitamente! Estou analisando seu histórico de vendas para encontrar a melhor taxa para você."
-- Erro/Limitação: "Para garantir sua segurança, não consigo realizar essa operação sozinha. Que tal conversarmos com um especialista humano para te orientar melhor?"
+- "Olá! Sou o InvestBot do Bradesco. Analisei seu saldo e notei uma oportunidade para seu dinheiro render mais que a conta corrente. Vamos descobrir seu perfil de investidor?"
+- Confirmação: "Entendi! Com base no seu perfil e nas suas transações recentes, estou calculando uma simulação de carteira educativa para você."
+- Erro/Limitação: "Para sua segurança, não tenho autorização para recomendar esse ativo específico ou realizar a compra. Deseja que eu te conecte a um consultor certificado do Banco?"
 
 ---
 
@@ -65,10 +59,10 @@ flowchart TD
 
 | Componente | Descrição |
 |------------|-----------|
-| Interface | Protótipo interativo desenvolvido em Streamlit, simulando a interface do WhatsApp.
-| LLM | [ex: GPT-4 via API] |
-| Base de Conhecimento | Arquivos JSON e CSV (transacoes.csv, perfil_investidor.json e produtos_financeiros.json) |
-| Validação | Técnica de RAG (Retrieval-Augmented Generation) com instruções de system prompt para impedir informações fora da base oficial |
+| Interface | Protótipo interativo desenvolvido em Streamlit, simulando um terminal de investimentos.
+| LLM | Gemini 1.5 Flash (via API), configurado para análise de dados estruturados. |
+| Base de Conhecimento | Arquivos locais contendo os dados do cliente e catálogo de produtos. |
+| Validação | Filtro de conformidade que impede a exibição de produtos com risco superior ao perfil detectado no perfil_investidor.json. |
 
 ---
 
@@ -76,16 +70,16 @@ flowchart TD
 
 ### Estratégias Adotadas
 
-- [ ] Grounding Estrito: O agente só responde com base nos produtos listados no arquivo produtos_financeiros.json.
-- [ ] Transbordo Seguro: Qualquer dúvida sobre investimentos complexos ou solicitações de crédito é direcionada para supervisão humana
-- [ ] Admissão de Falha: O agente é instruído a dizer "Não possuo essa informação" em vez de tentar adivinhar taxas ou prazos.
-- [ ] Conformidade de Perfil: O agente cruza o perfil_investidor.json antes de sugerir qualquer produto de investimento.
+- [ ] Grounding Estrito: O agente limita-se aos produtos do Bradesco presentes no produtos_financeiros.json.
+- [ ] Transbordo Seguro: Consultas sobre valores mobiliários específicos acionam o redirecionamento para atendimento humano especializado.
+- [ ] Admissão de Falha: Instrução sistêmica para não inventar rentabilidades futuras, reportando apenas dados históricos ou taxas vigentes.
+- [ ] Conformidade de Perfil: O algoritmo de sugestão é bloqueado caso o produto não seja adequado ao Suitability (perfil) do cliente.
 
 ### Limitações Declaradas
 > O que o agente NÃO faz?
 
-- Não realiza transações: A Luma orienta e prepara a jornada, mas não executa transferências ou contratações de empréstimos.
+- Não executa ordens: O agente não possui integração com o Home Broker para realizar compras ou vendas de ativos.
 
-- Não substitui certificação: O agente atua em caráter educativo e de triagem, não emitindo recomendações de valores mobiliários de forma autônoma.
+- Caráter Educativo: Todas as projeções são simulações fictícias e não garantem rentabilidade futura.
 
-- Base de Dados Estática: Para o protótipo, a análise se limita aos dados mockados fornecidos no diretório /data.
+- Falta de Certificação: O agente não substitui o aconselhamento de um profissional certificado pela CVM/ANBIMA.
