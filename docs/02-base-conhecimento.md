@@ -6,21 +6,9 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 
 | Arquivo | Formato | Utilização no Agente |
 |---------|---------|---------------------|
-| `historico_atendimento.csv` | CSV | Contextualizar interações anteriores |
-| `perfil_investidor.json` | JSON | Personalizar recomendações |
+| `perfil_investidor.json` | JSON | Define se o quiz deve ser mais detalhado ou direto |
 | `produtos_financeiros.json` | JSON | Sugerir produtos adequados ao perfil |
 | `transacoes.csv` | CSV | Analisar padrão de gastos do cliente |
-
-> [!TIP]
-> **Quer um dataset mais robusto?** Você pode utilizar datasets públicos do [Hugging Face](https://huggingface.co/datasets) relacionados a finanças, desde que sejam adequados ao contexto do desafio.
-
----
-
-## Adaptações nos Dados
-
-> Você modificou ou expandiu os dados mockados? Descreva aqui.
-
-[Sua descrição aqui]
 
 ---
 
@@ -29,12 +17,18 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 ### Como os dados são carregados?
 > Descreva como seu agente acessa a base de conhecimento.
 
-[ex: Os JSON/CSV são carregados no início da sessão e incluídos no contexto do prompt]
+Os ficheiros CSV e JSON são carregados no início da aplicação utilizando as bibliotecas pandas e json. Os dados das APIs de cotação são consultados via pedidos HTTP (biblioteca requests) sempre que o utilizador inicia uma nova simulação, garantindo dados de mercado atualizados.
 
 ### Como os dados são usados no prompt?
 > Os dados vão no system prompt? São consultados dinamicamente?
 
-[Sua descrição aqui]
+Os dados são injetados de forma estruturada no contexto enviado à LLM:
+
+- Dados de Perfil e Transações: São incluídos como "Fatos sobre o Utilizador" para que a IA saiba com quem está a falar.
+
+- Dados de Mercado: As cotações reais são passadas como variáveis de contexto para alimentar os cálculos de projeção.
+
+- Filtro de Produtos: Antes de enviar as opções ao prompt, o código Python filtra o produtos_financeiros.json, enviando para a IA apenas o que é adequado ao perfil do cliente.
 
 ---
 
@@ -43,13 +37,22 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 > Mostre um exemplo de como os dados são formatados para o agente.
 
 ```
-Dados do Cliente:
-- Nome: João Silva
-- Perfil: Moderado
-- Saldo disponível: R$ 5.000
+### PERFIL DO CLIENTE ###
+- Nome: Gabriel Figueiredo
+- Perfil Detectado: Moderado
+- Capacidade de Aporte Mensal Calculada: R$ 850,00
 
-Últimas transações:
-- 01/11: Supermercado - R$ 450
-- 03/11: Streaming - R$ 55
+### DADOS DE MERCADO ATUAIS ###
+- Taxa Selic: 10.75% a.a.
+- IPCA (últimos 12 meses): 4.50%
+
+### OPÇÕES DE INVESTIMENTO COMPATÍVEIS ###
+1. CDB Fácil Bradesco (Pós-fixado)
+2. Letra de Crédito Imobiliário (LCI) - Isenta de IR
+3. Fundo de Investimento em Renda Fixa
+
+### HISTÓRICO RECENTE ###
+- O cliente possui 3 transações de alto valor em lazer este mês. 
+Sugestão: Abordar a importância da reserva de emergência antes de investir em ativos de longo prazo.
 ...
 ```
