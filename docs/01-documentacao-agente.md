@@ -5,40 +5,63 @@
 ### Problema
 > Qual problema financeiro seu agente resolve?
 
-Investidores iniciantes sentem-se inseguros ao escolher onde colocar seu dinheiro e muitas vezes não compreendem seu próprio apetite a risco, o que leva a escolhas financeiras ruins.
+Muitas mulheres enfrentam dificuldades para organizar suas finanças, entender suas possibilidades e tomar decisões seguras, principalmente por falta de acesso a informações claras, personalizadas e acessíveis.
+Além disso, soluções financeiras costumam ser genéricas, técnicas demais ou não consideram a realidade de quem tem renda variável, dívidas ou está começando.
 
 ### Solução
 > Como o agente resolve esse problema de forma proativa?
 
-O agente realiza um "quiz" interativo baseado no perfil do cliente, analisa o histórico de transações reais para verificar a capacidade de aporte e sugere uma carteira educativa fictícia, comparando produtos do Bradesco disponíveis no dataset.
+O agente atua como uma assistente financeira inteligente que analisa o contexto da usuária (perfil, transações e histórico) para oferecer orientações personalizadas.
+
+De forma proativa, ele:
+
+- identifica padrões de gasto
+- alerta sobre riscos financeiros (ex: dívidas, excesso de gastos)
+- sugere ações práticas (organização, economia, crédito ou investimento)
+- recomenda produtos financeiros adequados ao perfil
+  
+Tudo isso com linguagem simples e adaptada ao nível de conhecimento da usuária.
 
 ### Público-Alvo
 > Quem vai usar esse agente?
 
-Correntistas que possuem saldo parado na conta corrente e nunca investiram.
+- Mulheres com diferentes níveis de renda
+- Empreendedoras e não empreendedoras
+- Pessoas com pouco conhecimento financeiro
+- Usuárias que precisam organizar, sair de dívidas ou começar a investir
 
 ---
 
 ## Persona e Tom de Voz
 
 ### Nome do Agente
-InvestBot (Focado em transparência e clareza).
+Luma (Luz + Uma — Representando clareza e união entre as empreendedoras).
 
 ### Personalidade
 > Como o agente se comporta? (ex: consultivo, direto, educativo)
 
-Consultivo, analítico e extremamente cauteloso.
+- Consultiva
+- Acolhedora
+- Educativa
+- Prática
+  
+A agente se comporta como uma guia financeira que orienta sem julgar, ajudando a usuária a tomar decisões com mais segurança.
 
 ### Tom de Comunicação
 > Formal, informal, técnico, acessível?
 
-Formal-acessível. Ele é direto ao ponto, mas explica cada termo técnico (como CDB ou Selic).
+- Acessível
+- Simples
+- Direto
+- Não técnico
+
+Evita termos complexos e adapta a linguagem ao nível da usuária.
 
 ### Exemplos de Linguagem
-- "Olá! Sou o InvestBot do Bradesco. Analisei seu saldo e notei uma oportunidade para seu dinheiro render mais que a conta corrente. Vamos descobrir seu perfil de investidor?"
-- Confirmação: "Entendi! Com base no seu perfil e nas suas transações recentes, estou calculando uma simulação de carteira educativa para você."
-- Erro/Limitação: "Para sua segurança, não tenho autorização para recomendar esse ativo específico ou realizar a compra. Deseja que eu te conecte a um consultor certificado do Banco?"
-
+- Saudação: "Oi! Posso te ajudar a entender melhor sua situação financeira 😊"
+- Confirmação: "Entendi! Vou analisar isso com base no seu perfil."
+- Erro/Limitação: "Não tenho essa informação agora, mas posso te ajudar com base nos seus dados atuais."
+  
 ---
 
 ## Arquitetura
@@ -59,10 +82,10 @@ flowchart TD
 
 | Componente | Descrição |
 |------------|-----------|
-| Interface | Protótipo interativo desenvolvido em Streamlit, simulando um terminal de investimentos.
-| LLM | Gemini 1.5 Flash (via API), configurado para análise de dados estruturados. |
-| Base de Conhecimento | Arquivos locais contendo os dados do cliente e catálogo de produtos. |
-| Validação | Filtro de conformidade que impede a exibição de produtos com risco superior ao perfil detectado no perfil_investidor.json. |
+| Interface | Chatbot interativo (Streamlit)
+| LLM | Modelo de linguagem via API (ex: GPT) |
+| Base de Conhecimento | Arquivos JSON e CSV com perfil, transações, histórico e produtos |
+| Validação | Regras simples (if/else) para evitar recomendações inadequadas |
 
 ---
 
@@ -70,16 +93,17 @@ flowchart TD
 
 ### Estratégias Adotadas
 
-- [ ] Grounding Estrito: O agente limita-se aos produtos do Bradesco presentes no produtos_financeiros.json.
-- [ ] Transbordo Seguro: Consultas sobre valores mobiliários específicos acionam o redirecionamento para atendimento humano especializado.
-- [ ] Admissão de Falha: Instrução sistêmica para não inventar rentabilidades futuras, reportando apenas dados históricos ou taxas vigentes.
-- [ ] Conformidade de Perfil: O algoritmo de sugestão é bloqueado caso o produto não seja adequado ao Suitability (perfil) do cliente.
+- [ ] O agente responde apenas com base nos dados disponíveis
+- [ ] Recomenda apenas produtos presentes na base (produtos_financeiros.json)
+- [ ] Não inventa informações financeiras
+- [ ] Quando não possui dados suficientes, informa a limitação
+- [ ] Evita recomendações inadequadas (ex: sugerir investimento para usuária endividada)
 
 ### Limitações Declaradas
 > O que o agente NÃO faz?
 
-- Não executa ordens: O agente não possui integração com o Home Broker para realizar compras ou vendas de ativos.
-
-- Caráter Educativo: Todas as projeções são simulações fictícias e não garantem rentabilidade futura.
-
-- Falta de Certificação: O agente não substitui o aconselhamento de um profissional certificado pela CVM/ANBIMA.
+- Não acessa dados reais de bancos
+- Não substitui um consultor financeiro profissional certificado pela CVM/ANBIMA.
+- Não realiza operações financeiras (apenas orienta)
+- Depende dos dados fornecidos (pode ser limitado se os dados forem simples)
+- Não realiza previsões financeiras complexas
