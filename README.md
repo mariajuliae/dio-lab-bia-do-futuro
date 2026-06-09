@@ -2,7 +2,7 @@
 
 ## Sobre o Projeto
 
-A **Bia** é uma agente de inteligência artificial desenvolvida para ajudar mulheres a entender, organizar e melhorar sua vida financeira de forma simples e acessível.
+A **Luma** é uma agente de inteligência artificial desenvolvida para ajudar mulheres a entender, organizar e melhorar sua vida financeira de forma simples e acessível.
 
 O projeto foi criado como parte de um desafio prático de desenvolvimento de agentes com IA generativa, com foco em:
 
@@ -27,7 +27,7 @@ Muitas pessoas enfrentam dificuldades para lidar com dinheiro devido a:
 
 ## Solução
 
-A Bia atua como uma assistente financeira que:
+A Luma atua como uma assistente financeira que:
 
 - analisa perfil, transações e histórico da usuária  
 - identifica padrões de comportamento financeiro  
@@ -103,7 +103,7 @@ Todas as ferramentas abaixo possuem versões gratuitas:
 - Python  
 - Streamlit (interface)  
 - JSON e CSV (base de dados)  
-- LLM (ex: OpenAI API)  
+- LLM (ex: OLLAMA API)  
 
 ---
 
